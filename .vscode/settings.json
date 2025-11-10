@@ -1,5 +1,6 @@
 {
     "files.associations": {
-        "libftprintf.h": "c"
+        "*.css": "tailwindcss",
+        "libft.h": "c"
     }
 }

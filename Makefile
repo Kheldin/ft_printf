@@ -4,7 +4,7 @@ CFLAGS = -Wall -Wextra -Werror
 
 CC = cc
 
-SRCFILES = ft_printf.c
+SRCFILES = ft_printf.c select_operation.c
 
 LIBFT_DIR = ../libft
 LIBFT = $(LIBFT_DIR)/libft.a

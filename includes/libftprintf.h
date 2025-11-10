@@ -4,5 +4,6 @@
 #include <stdarg.h>
 
 int	ft_printf(const char *format, ...);
+void	select_operation(char c, char *format_tab, int i);
 
 #endif
