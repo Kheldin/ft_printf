@@ -17,7 +17,6 @@ int	is_valid_format(char c)
 int	ft_printf(const char *format, ...)
 {
 	va_list	args;
-	//int		nb_args;
 	int		i;
 
 	if (!format)
