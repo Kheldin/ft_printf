@@ -1,8 +1,8 @@
 #include "includes/libftprintf.h"
 
-void	select_operation(char c, char *format_tab, int i)
+void	do_operation(char c, va_list args)
 {
 	if (c == 'd')
-		ft_putnbr_fd((int)format_tab[i], 1);
+		ft_putnbr_fd(va_arg(args, int), 1);
 	return ;
 }

@@ -2,8 +2,9 @@
 # define LIBFTPRINTF_H
 #include "../../libft/libft.h"
 #include <stdarg.h>
+#include <stdio.h> // a delete
 
 int	ft_printf(const char *format, ...);
-void	select_operation(char c, char *format_tab, int i);
+void	do_operation(char c, va_list args);
 
 #endif

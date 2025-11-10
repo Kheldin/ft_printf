@@ -1,5 +1,4 @@
 #include "includes/libftprintf.h"
-#include <stdio.h>
 
 int	is_valid_format(char c)
 {
@@ -15,69 +14,22 @@ int	is_valid_format(char c)
 	return (0);
 }
 
-int	count_formats(const char *format)
-{
-	int		count;
-	int		i;
-
-	count = 0;
-	i = 1;
-	while (format[i])
-	{
-		if (format[i - 1] == '%' && is_valid_format(format[i]))
-		{
-			i++;
-			count++;
-		}
-		i++;
-	}
-	return (count);
-}
-
-char	*get_formats_tab(const char *format)
-{
-	char	*tab;
-	int		i;
-	int		j;
-
-	j = 0;
-	i = 1;
-	tab = ft_calloc(count_formats(format) + 1, sizeof(char));
-	if (!tab)
-		return (NULL);
-	while (format[i])
-	{
-		if (format[i - 1] == '%' && is_valid_format(format[i]))
-			tab[j++] = format[i++];
-		else if (format[i - 1] == '%' && !is_valid_format(format[i]))
-			return (NULL);
-		i++;
-	}
-	tab[j] = '\0';
-	return (tab);
-}
-
 int	ft_printf(const char *format, ...)
 {
 	va_list	args;
-	char	*format_tab;
 	//int		nb_args;
 	int		i;
-	int		j;
 
 	if (!format)
 		return (-1);
 	if (ft_strlen((char *)format) == 1)
 		return (ft_putchar_fd(format[0], 1), 0);
-	//nb_args = count_formats(format);
-	format_tab = get_formats_tab(format);
 	i = 0;
-	j = 0;
 	va_start(args, format);
 	while (format[i])
 	{
 		if (i > 0 && format[i - 1] == '%' && is_valid_format(format[i]))
-			select_operation(format[i], format_tab, j++);
+			do_operation(format[i], args);
 		else if (format[i] != '%')
 			ft_putchar_fd(format[i], 1);
 		i++;
