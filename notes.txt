@@ -1,1 +1,0 @@
--   Supporter les escapes sequences (backslash)

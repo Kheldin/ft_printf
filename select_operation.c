@@ -33,8 +33,18 @@ static void	print_hexu(int nb)
 		nb *= -1;
 	}
 	if (nb > 15)
-		print_hexl(nb / 16);
+		print_hexu(nb / 16);
 	ft_putchar_fd(hex[nb % 16], 1);
+}
+
+void	print_hex_adress(size_t adress)
+{
+	char *hex;
+
+	hex = "0123456789abcdef";
+	if (adress > 15)
+		print_hex_adress(adress / 16);
+	ft_putchar_fd(hex[adress % 16], 1);
 }
 
 void	do_operation(char c, va_list args)
@@ -53,5 +63,10 @@ void	do_operation(char c, va_list args)
 		print_hexl(va_arg(args, int));
 	else if (c == 'X')
 		print_hexu(va_arg(args, int));
+	else if (c == 'p')
+	{
+		ft_putstr_fd("0x", 1);
+		print_hex_adress(va_arg(args, unsigned long));
+	}
 	return ;
 }
