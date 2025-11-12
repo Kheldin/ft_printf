@@ -1,4 +1,5 @@
 #include "includes/ft_printf.h"
+#include <stdio.h>
 
 int	is_valid_format(char c)
 {
@@ -22,7 +23,11 @@ int	ft_printf(const char *format, ...)
 
 	counter = 0;
 	if (!format)
+	{
+		printf("bjr");
 		return (-1);
+	}
+		
 	i = 0;
 	va_start(args, format);
 	while (format[i])

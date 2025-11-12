@@ -2,8 +2,7 @@
 
 void	ft_putchar_printf(char c, int *counter)
 {
-	write(1, &c, 1);
-	*counter = *counter + 1;
+	*counter += write(1, &c, 1);
 }
 
 void	ft_putstr_printf(char *str, int *counter)
@@ -25,7 +24,7 @@ void	print_unsigned(unsigned int nb, int *counter)
 	ft_putchar_printf((nb % 10) + '0', counter);
 }
 
-void	print_hexl(long nb, int *counter)
+void	print_hexl(unsigned int nb, int *counter)
 {
 	char *hex;
 
@@ -35,7 +34,7 @@ void	print_hexl(long nb, int *counter)
 	ft_putchar_printf(hex[nb % 16], counter);
 }
 
-void	print_hexu(long nb, int *counter)
+void	print_hexu(unsigned int nb, int *counter)
 {
 	char *hex;
 

@@ -17,7 +17,7 @@ $(NAME) : $(OBJECTS)
 	@touch $(NAME)
 
 %.o: %.c $(HEADER)
-	$(CC) $(CFLAGS) -I./includes -c $< -o $@
+	$(CC) $(CFLAGS) -I./includes -c $< -o $@ fdhrtgfyhtg
 
 clean:
 	rm -f $(OBJECTS)
@@ -28,4 +28,7 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+debug: re
+	cc main.c libftprintf.a -g3 ; ./a.out
+
+.PHONY: all clean fclean re debug

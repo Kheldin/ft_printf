@@ -12,8 +12,8 @@ void	ft_putchar_printf(char c, int *counter);
 void	ft_putstr_printf(char *str, int *counter);
 void	ft_putnbr_printf(long nb, int *counter);
 void	print_unsigned(unsigned int nb, int *counter);
-void	print_hexl(long nb, int *counter);
-void	print_hexu(long nb, int *counter);
+void	print_hexl(unsigned int nb, int *counter);
+void	print_hexu(unsigned int nb, int *counter);
 
 
 #endif

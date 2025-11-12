@@ -27,7 +27,10 @@ void	ft_putnbr_printf(long nb, int *counter)
 void	do_operation(char c, va_list args, int *counter)
 {
 	if (c == 'd' || c == 'i')
-		ft_putnbr_printf(va_arg(args, long), counter);
+	{
+		printf("dsgefd\n");
+		ft_putnbr_printf(va_arg(args, int), counter);
+	}
 	else if (c == 'u')
 		print_unsigned(va_arg(args, unsigned int), counter);
 	else if (c == 'c')
@@ -37,9 +40,9 @@ void	do_operation(char c, va_list args, int *counter)
 	else if (c == '%')
 		ft_putchar_printf('%', counter);
 	else if (c == 'x')
-		print_hexl(va_arg(args, long), counter);
+		print_hexl(va_arg(args, unsigned int), counter);
 	else if (c == 'X')
-		print_hexu(va_arg(args, long), counter);
+		print_hexu(va_arg(args, unsigned int), counter);
 	else if (c == 'p')
 	{
 		ft_putstr_printf("0x", counter);
