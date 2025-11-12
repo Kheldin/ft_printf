@@ -1,4 +1,4 @@
-#include "includes/libftprintf.h"
+#include "includes/ft_printf.h"
 
 void	ft_putchar_printf(char c, int *counter)
 {
@@ -25,31 +25,21 @@ void	print_unsigned(unsigned int nb, int *counter)
 	ft_putchar_printf((nb % 10) + '0', counter);
 }
 
-void	print_hexl(int nb, int *counter)
+void	print_hexl(long nb, int *counter)
 {
 	char *hex;
 
 	hex = "0123456789abcdef";
-	if (nb < 0)
-	{
-		ft_putchar_printf('-', counter);
-		nb *= -1;
-	}
 	if (nb > 15)
 		print_hexl(nb / 16, counter);
 	ft_putchar_printf(hex[nb % 16], counter);
 }
 
-void	print_hexu(int nb, int *counter)
+void	print_hexu(long nb, int *counter)
 {
 	char *hex;
 
 	hex = "0123456789ABCDEF";
-	if (nb < 0)
-	{
-		ft_putchar_printf('-', counter);
-		nb *= -1;
-	}
 	if (nb > 15)
 		print_hexu(nb / 16, counter);
 	ft_putchar_printf(hex[nb % 16], counter);

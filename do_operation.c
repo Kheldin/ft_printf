@@ -1,4 +1,4 @@
-#include "includes/libftprintf.h"
+#include "includes/ft_printf.h"
 
 void	print_hex_adress(size_t adress, int *counter)
 {
@@ -37,13 +37,12 @@ void	do_operation(char c, va_list args, int *counter)
 	else if (c == '%')
 		ft_putchar_printf('%', counter);
 	else if (c == 'x')
-		print_hexl(va_arg(args, int), counter);
+		print_hexl(va_arg(args, long), counter);
 	else if (c == 'X')
-		print_hexu(va_arg(args, int), counter);
+		print_hexu(va_arg(args, long), counter);
 	else if (c == 'p')
 	{
 		ft_putstr_printf("0x", counter);
 		print_hex_adress(va_arg(args, unsigned long), counter);
 	}
-	return ;
 }

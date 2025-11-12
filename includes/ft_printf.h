@@ -1,5 +1,5 @@
-#ifndef LIBFTPRINTF_H
-# define LIBFTPRINTF_H
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 //#include "../../libft/libft.h"
 #include <stdarg.h>
 #include <stdlib.h>
@@ -12,8 +12,8 @@ void	ft_putchar_printf(char c, int *counter);
 void	ft_putstr_printf(char *str, int *counter);
 void	ft_putnbr_printf(long nb, int *counter);
 void	print_unsigned(unsigned int nb, int *counter);
-void	print_hexl(int nb, int *counter);
-void	print_hexu(int nb, int *counter);
+void	print_hexl(long nb, int *counter);
+void	print_hexu(long nb, int *counter);
 
 
 #endif
