@@ -6,7 +6,7 @@
 #include <unistd.h>
 #include <stdio.h> // a delete
 
-int	ft_printf(const char *format, ...);
+int	ft_printf(const char *format, ...)__attribute__ ((format (printf, 1, 2)));
 void	do_operation(char c, va_list args, int *counter);
 void	ft_putchar_printf(char c, int *counter);
 void	ft_putstr_printf(char *str, int *counter);

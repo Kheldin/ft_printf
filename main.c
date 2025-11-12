@@ -1,14 +1,15 @@
-#include "includes/ft_printf.h"
-#include <stdio.h>
-#include <limits.h>
+// #include "includes/ft_printf.h"
+// #include <stdio.h>
+// #include <limits.h>
 
 int main (void)
 {
     int a = 0;
 
-    printf("Return value = %d\n", ft_printf(NULL));
-    printf("Return value = %d\n", printf(NULL));
-    ft_printf("Return value = %d\n", UINT_MAX);
+    // printf("                      % d %d\n", ft_printf(NULL));
+    // printf("%d", printf("%"));
+    // ft_printf("%d", ft_printf("%"));
+    // __builtin_printf("Salut\n");
 
     return (0);
 }

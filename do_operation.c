@@ -28,7 +28,6 @@ void	do_operation(char c, va_list args, int *counter)
 {
 	if (c == 'd' || c == 'i')
 	{
-		printf("dsgefd\n");
 		ft_putnbr_printf(va_arg(args, int), counter);
 	}
 	else if (c == 'u')
