@@ -15,6 +15,16 @@ int	is_valid_format(char c)
 	return (0);
 }
 
+int	ft_strlen_printf(const char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
+}
+
 int	ft_printf(const char *format, ...)
 {
 	va_list	args;
@@ -26,6 +36,11 @@ int	ft_printf(const char *format, ...)
 		return (-1);
 	i = 0;
 	va_start(args, format);
+	if (ft_strlen_printf(format) == 1 && format[0] == '%')
+	{
+		ft_putchar_printf('%', &counter);
+		return (-1);
+	}
 	while (format[i])
 	{
 		if (format[i] == '%' && is_valid_format(format[i+1]))
