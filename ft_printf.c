@@ -27,8 +27,8 @@ int	ft_printf(const char *format, ...)
 	va_start(args, format);
 	while (format[i])
 	{
-		if (i > 0 && format[i - 1] == '%' && is_valid_format(format[i]))
-			do_operation(format[i], args);
+		if (format[i] == '%' && is_valid_format(format[i+1]))
+			do_operation(format[++i], args);
 		else if (format[i] != '%')
 			ft_putchar_fd(format[i], 1);
 		i++;
