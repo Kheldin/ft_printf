@@ -18,21 +18,21 @@ int	ft_printf(const char *format, ...)
 {
 	va_list	args;
 	int		i;
+	int		counter;
 
+	counter = 0;
 	if (!format)
 		return (-1);
-	if (ft_strlen((char *)format) == 1)
-		return (ft_putchar_fd(format[0], 1), 0);
 	i = 0;
 	va_start(args, format);
 	while (format[i])
 	{
 		if (format[i] == '%' && is_valid_format(format[i+1]))
-			do_operation(format[++i], args);
+			do_operation(format[++i], args, &counter);
 		else if (format[i] != '%')
-			ft_putchar_fd(format[i], 1);
+			ft_putchar_printf(format[i], &counter);
 		i++;
 	}
 	va_end(args);
-	return (0);
+	return (counter);
 }
