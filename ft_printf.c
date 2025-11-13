@@ -6,7 +6,7 @@
 /*   By: kacherch <kacherch@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/13 16:12:32 by kacherch          #+#    #+#             */
-/*   Updated: 2025/11/13 16:12:42 by kacherch         ###   ########.fr       */
+/*   Updated: 2025/11/13 16:25:35 by kacherch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ int	ft_printf(const char *format, ...)
 	va_list	args;
 	int		i;
 	int		counter;
-
+	int		state;
+	
 	counter = 0;
 	if (!format)
 		return (-1);
@@ -51,9 +52,11 @@ int	ft_printf(const char *format, ...)
 	while (format[i])
 	{
 		if (format[i] == '%' && is_valid_format(format[i + 1]))
-			do_operation(format[++i], args, &counter);
+			state = do_operation(format[++i], args, &counter);
 		else if (format[i] != '%')
-			ft_putchar_printf(format[i], &counter);
+			state = ft_putchar_printf(format[i], &counter);
+		if (state == -1)
+			return (-1);
 		i++;
 	}
 	va_end(args);
