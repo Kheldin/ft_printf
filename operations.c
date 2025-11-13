@@ -6,7 +6,7 @@
 /*   By: kacherch <kacherch@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/13 16:14:56 by kacherch          #+#    #+#             */
-/*   Updated: 2025/11/13 16:22:51 by kacherch         ###   ########.fr       */
+/*   Updated: 2025/11/13 16:32:43 by kacherch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	print_unsigned(unsigned int nb, int *counter)
 {
 	if (nb > 9)
 		print_unsigned(nb / 10, counter);
-	if (ft_putchar_printf(nb % 10, counter) == -1)
+	if (ft_putchar_printf((nb % 10) + '0', counter) == -1)
 			return (-1);
 	return (0);
 }
