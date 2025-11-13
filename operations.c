@@ -1,8 +1,14 @@
 #include "includes/ft_printf.h"
 
-void	ft_putchar_printf(char c, int *counter)
+int	ft_putchar_printf(char c, int *counter)
 {
-	*counter += write(1, &c, 1);
+	int	tmp;
+
+	tmp = write(1, &c, 1);
+	if (tmp == -1)
+		return (-1);
+	*counter += tmp;
+	return (0);
 }
 
 void	ft_putstr_printf(char *str, int *counter)

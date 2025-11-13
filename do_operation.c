@@ -27,9 +27,7 @@ void	ft_putnbr_printf(long nb, int *counter)
 void	do_operation(char c, va_list args, int *counter)
 {
 	if (c == 'd' || c == 'i')
-	{
 		ft_putnbr_printf(va_arg(args, int), counter);
-	}
 	else if (c == 'u')
 		print_unsigned(va_arg(args, unsigned int), counter);
 	else if (c == 'c')

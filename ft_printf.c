@@ -32,15 +32,10 @@ int	ft_printf(const char *format, ...)
 	int		counter;
 
 	counter = 0;
-	/*if (!format)
-		return (-1);*/
+	if (!format)
+		return (-1);
 	i = 0;
 	va_start(args, format);
-	if (ft_strlen_printf(format) == 1 && format[0] == '%')
-	{
-		ft_putchar_printf('%', &counter);
-		return (-1);
-	}
 	while (format[i])
 	{
 		if (format[i] == '%' && is_valid_format(format[i+1]))

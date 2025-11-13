@@ -3,52 +3,45 @@ CC          := cc
 CFLAGS      := -Wall -Wextra -Werror
 AR          := ar rcs
 
-# Directories
 SRCDIR      := .
-OBJDIR      := obj
 DEPDIR      := $(OBJDIR)/.deps
 INCDIR      := includes
 
-# Source files
 SRCFILES    := ft_printf.c do_operation.c operations.c
-OBJS        := $(addprefix $(OBJDIR)/, $(SRCFILES:.c=.o))
-DEPS        := $(addprefix $(DEPDIR)/, $(SRCFILES:.c=.d))
+OBJS        := $(SRCFILES:.c=.o)
 HEADER      := $(INCDIR)/libftprintf.h
 
 # Dependency flags
-DEPFLAGS    = -MT $@ -MMD -MP -MF $(DEPDIR)/$*.d
+DEPFLAGS    = $@ -MMD -MP $(DEPDIR)/$*.d
+
+-include $(SRC:.c=.d)
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	@$(AR) $(NAME) $(OBJS)
-	@echo "✅  Archive created: $(NAME)"
+	$(AR) $(NAME) $(OBJS)
 
-$(OBJDIR)/%.o: $(SRCDIR)/%.c $(HEADER) | $(OBJDIR) $(DEPDIR)
-	@$(CC) $(CFLAGS) $(DEPFLAGS) -I$(INCDIR) -c $< -o $@
-	@echo "🔧  Compiled: $<"
-
-$(OBJDIR):
-	@mkdir -p $(OBJDIR)
+%.o: %.c $(HEADER)
+	$(CC) $(CFLAGS) -c $< -o $@
 
 $(DEPDIR):
-	@mkdir -p $(DEPDIR)
+	mkdir -p $(DEPDIR)
+
+truc: 
+	@echo $(OBJS)
 
 clean:
-	@rm -rf $(OBJDIR)
-	@echo "🧹  Cleaned object and dependency files"
+	rm -rf $(OBJDIR)
+	rm -f $(OBJS)
 
 fclean: clean
-	@rm -f $(NAME)
-	@rm -f *.out
-	@echo "🧹  Cleaned executables"
+	rm -f $(NAME)
+	rm -f *out
 
 re: fclean all
 
 debug: re
-	@$(CC) main.c $(NAME) -g3 -o debug.out
-	@./debug.out
+	$(CC) main.c $(NAME) -g3 -o debug.out
+	./debug.out
 
-.PHONY: all clean fclean re debug
-
--include $(DEPS)
+.PHONY: all clean fclean re debug truc

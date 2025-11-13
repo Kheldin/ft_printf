@@ -6,9 +6,13 @@ int main (void)
 {
     int a = 0;
 
-  
-    ft_printf("%d", ft_printf("%"));
-    printf("%d", printf("%"));
+    ft_printf("%");
+    ft_printf("%d\n", ft_printf("%"));
+    ft_printf("%f", 3.5);
+    ft_printf("\n----------------------------------------\n");
+    printf("%");
+    printf("%d\n", ft_printf("%"));
+    printf("%f", 3.5);
 
     return (0);
 }
