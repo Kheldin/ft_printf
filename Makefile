@@ -1,34 +1,54 @@
-NAME = libftprintf.a
+NAME        := libftprintf.a
+CC          := cc
+CFLAGS      := -Wall -Wextra -Werror
+AR          := ar rcs
 
-CFLAGS = -Wall -Wextra -Werror
+# Directories
+SRCDIR      := .
+OBJDIR      := obj
+DEPDIR      := $(OBJDIR)/.deps
+INCDIR      := includes
 
-CC = cc
+# Source files
+SRCFILES    := ft_printf.c do_operation.c operations.c
+OBJS        := $(addprefix $(OBJDIR)/, $(SRCFILES:.c=.o))
+DEPS        := $(addprefix $(DEPDIR)/, $(SRCFILES:.c=.d))
+HEADER      := $(INCDIR)/libftprintf.h
 
-SRCFILES = ft_printf.c do_operation.c operations.c
+# Dependency flags
+DEPFLAGS    = -MT $@ -MMD -MP -MF $(DEPDIR)/$*.d
 
-OBJECTS = $(SRCFILES:.c=.o)
+all: $(NAME)
 
-HEADER = libftprintf.h
+$(NAME): $(OBJS)
+	@$(AR) $(NAME) $(OBJS)
+	@echo "✅  Archive created: $(NAME)"
 
-all : $(NAME)
+$(OBJDIR)/%.o: $(SRCDIR)/%.c $(HEADER) | $(OBJDIR) $(DEPDIR)
+	@$(CC) $(CFLAGS) $(DEPFLAGS) -I$(INCDIR) -c $< -o $@
+	@echo "🔧  Compiled: $<"
 
-$(NAME) : $(OBJECTS)
-	ar rcs $(NAME) $(OBJECTS)
-	@touch $(NAME)
+$(OBJDIR):
+	@mkdir -p $(OBJDIR)
 
-%.o: %.c $(HEADER)
-	$(CC) $(CFLAGS) -I./includes -c $< -o $@ fdhrtgfyhtg
+$(DEPDIR):
+	@mkdir -p $(DEPDIR)
 
 clean:
-	rm -f $(OBJECTS)
+	@rm -rf $(OBJDIR)
+	@echo "🧹  Cleaned object and dependency files"
 
 fclean: clean
-	rm -f $(NAME)
-	rm -f *.out
+	@rm -f $(NAME)
+	@rm -f *.out
+	@echo "🧹  Cleaned executables"
 
 re: fclean all
 
 debug: re
-	cc main.c libftprintf.a -g3 ; ./a.out
+	@$(CC) main.c $(NAME) -g3 -o debug.out
+	@./debug.out
 
 .PHONY: all clean fclean re debug
+
+-include $(DEPS)

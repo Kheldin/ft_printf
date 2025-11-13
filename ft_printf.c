@@ -32,8 +32,8 @@ int	ft_printf(const char *format, ...)
 	int		counter;
 
 	counter = 0;
-	if (!format)
-		return (-1);
+	/*if (!format)
+		return (-1);*/
 	i = 0;
 	va_start(args, format);
 	if (ft_strlen_printf(format) == 1 && format[0] == '%')
