@@ -4,17 +4,14 @@ CFLAGS      := -Wall -Wextra -Werror
 AR          := ar rcs
 
 SRCDIR      := .
-DEPDIR      := $(OBJDIR)/.deps
+DEPDIR      := $(SRCDIR)/.deps
 INCDIR      := includes
 
 SRCFILES    := ft_printf.c do_operation.c operations.c
 OBJS        := $(SRCFILES:.c=.o)
-HEADER      := $(INCDIR)/libftprintf.h
+HEADER      := $(INCDIR)/ft_printf.h
 
-# Dependency flags
-DEPFLAGS    = $@ -MMD -MP $(DEPDIR)/$*.d
-
--include $(SRC:.c=.d)
+DEPFLAGS = -MMD -MP -MF $(DEPDIR)/$*.d
 
 all: $(NAME)
 
@@ -22,16 +19,13 @@ $(NAME): $(OBJS)
 	$(AR) $(NAME) $(OBJS)
 
 %.o: %.c $(HEADER)
-	$(CC) $(CFLAGS) -c $< -o $@
+	@mkdir -p $(DEPDIR)
+	$(CC) $(CFLAGS) $(DEPFLAGS) -c $< -o $@
 
-$(DEPDIR):
-	mkdir -p $(DEPDIR)
-
-truc: 
-	@echo $(OBJS)
+-include $(patsubst %.c,$(DEPDIR)/%.d,$(SRCFILES))
 
 clean:
-	rm -rf $(OBJDIR)
+	rm -rf $(DEPDIR)
 	rm -f $(OBJS)
 
 fclean: clean
@@ -44,4 +38,4 @@ debug: re
 	$(CC) main.c $(NAME) -g3 -o debug.out
 	./debug.out
 
-.PHONY: all clean fclean re debug truc
+.PHONY: all clean fclean re debug
