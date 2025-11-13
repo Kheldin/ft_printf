@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   do_operation.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kacherch <kacherch@student.42lyon.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/11/13 16:14:44 by kacherch          #+#    #+#             */
+/*   Updated: 2025/11/13 16:14:50 by kacherch         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "includes/ft_printf.h"
 
 void	print_hex_adress(size_t adress, int *counter)
 {
-	char *hex;
+	char	*hex;
 
 	hex = "0123456789abcdef";
 	if (adress > 15)

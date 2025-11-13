@@ -1,18 +1,30 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kacherch <kacherch@student.42lyon.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/11/13 16:13:04 by kacherch          #+#    #+#             */
+/*   Updated: 2025/11/13 16:14:31 by kacherch         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
-#include <stdarg.h>
-#include <stdlib.h>
-#include <unistd.h>
+# include <stdarg.h>
+# include <stdlib.h>
+# include <unistd.h>
 
-int	ft_printf(const char *format, ...) __attribute__ ((format (printf, 1, 2)));
+int		ft_printf(const char *format, ...)
+		__attribute__ ((format (printf, 1, 2)));
 void	do_operation(char c, va_list args, int *counter);
-int     ft_putchar_printf(char c, int *counter);
+int		ft_putchar_printf(char c, int *counter);
 void	ft_putstr_printf(char *str, int *counter);
 void	ft_putnbr_printf(long nb, int *counter);
 void	print_unsigned(unsigned int nb, int *counter);
 void	print_hexl(unsigned int nb, int *counter);
 void	print_hexu(unsigned int nb, int *counter);
-int     ft_strlen_printf(const char *str);
-
+int		ft_strlen_printf(const char *str);
 
 #endif

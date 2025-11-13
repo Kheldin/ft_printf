@@ -1,5 +1,17 @@
-#include "includes/ft_printf.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kacherch <kacherch@student.42lyon.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/11/13 16:12:32 by kacherch          #+#    #+#             */
+/*   Updated: 2025/11/13 16:12:42 by kacherch         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdio.h>
+#include "includes/ft_printf.h"
 
 int	is_valid_format(char c)
 {
@@ -38,7 +50,7 @@ int	ft_printf(const char *format, ...)
 	va_start(args, format);
 	while (format[i])
 	{
-		if (format[i] == '%' && is_valid_format(format[i+1]))
+		if (format[i] == '%' && is_valid_format(format[i + 1]))
 			do_operation(format[++i], args, &counter);
 		else if (format[i] != '%')
 			ft_putchar_printf(format[i], &counter);
