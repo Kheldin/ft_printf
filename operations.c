@@ -27,6 +27,13 @@ int	ft_putstr_printf(char *str, int *counter)
 {
 	int	i;
 
+	if (!str)
+	{
+		if (write(1, "(null)", 6) == -1)
+			return (-1);
+		*counter += 6;
+		return (0);
+	}
 	i = 0;
 	while (str[i])
 	{
@@ -42,7 +49,7 @@ int	print_unsigned(unsigned int nb, int *counter)
 	if (nb > 9)
 		print_unsigned(nb / 10, counter);
 	if (ft_putchar_printf((nb % 10) + '0', counter) == -1)
-			return (-1);
+		return (-1);
 	return (0);
 }
 

@@ -43,7 +43,7 @@ int	ft_printf(const char *format, ...)
 	int		i;
 	int		counter;
 	int		state;
-	
+
 	counter = 0;
 	if (!format)
 		return (-1);

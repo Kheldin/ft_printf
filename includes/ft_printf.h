@@ -25,6 +25,7 @@ int	ft_putnbr_printf(long nb, int *counter);
 int	print_unsigned(unsigned int nb, int *counter);
 int	print_hexl(unsigned int nb, int *counter);
 int	print_hexu(unsigned int nb, int *counter);
-int	t_strlen_printf(const char *str);
+int	ft_strlen_printf(const char *str);
+int	print_sizet(size_t nb, int *counter);
 
 #endif

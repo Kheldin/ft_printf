@@ -14,12 +14,28 @@
 
 int	print_hex_adress(size_t adress, int *counter)
 {
+	if (!adress)
+	{
+		if (write(1, "(nil)", 5) == -1)
+			return (-1);
+		*counter += 5;
+		return (0);
+	}
+	if (ft_putstr_printf("0x", counter) == -1)
+		return (-1);
+	if (print_sizet(adress, counter) == -1)
+		return (-1);
+	return (0);
+}
+
+int	print_sizet(size_t nb, int *counter)
+{
 	char	*hex;
 
 	hex = "0123456789abcdef";
-	if (adress > 15)
-		print_hex_adress(adress / 16, counter);
-	if (ft_putchar_printf(hex[adress % 16], counter) == -1)
+	if (nb > 15)
+		print_sizet(nb / 16, counter);
+	if (ft_putchar_printf(hex[nb % 16], counter) == -1)
 		return (-1);
 	return (0);
 }
@@ -42,7 +58,7 @@ int	ft_putnbr_printf(long nb, int *counter)
 int	do_operation(char c, va_list args, int *counter)
 {
 	int	state;
-	
+
 	if (c == 'd' || c == 'i')
 		state = ft_putnbr_printf(va_arg(args, int), counter);
 	else if (c == 'u')
@@ -59,9 +75,7 @@ int	do_operation(char c, va_list args, int *counter)
 		state = print_hexu(va_arg(args, unsigned int), counter);
 	else if (c == 'p')
 	{
-		if (ft_putstr_printf("0x", counter) == -1)
-			return (-1);
 		state = print_hex_adress(va_arg(args, unsigned long), counter);
 	}
-	return (1);
+	return (state);
 }
