@@ -22,7 +22,7 @@ $(NAME): $(OBJS)
 	@mkdir -p $(DEPDIR)
 	$(CC) $(CFLAGS) $(DEPFLAGS) -c $< -o $@
 
--include $(patsubst %.c,$(DEPDIR)/%.d,$(SRCFILES))
+-include $(SRCFILES:%.c=$(DEPDIR)/%.d)
 
 clean:
 	rm -rf $(DEPDIR)
