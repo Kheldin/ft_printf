@@ -6,7 +6,7 @@
 /*   By: kacherch <kacherch@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/13 16:14:44 by kacherch          #+#    #+#             */
-/*   Updated: 2025/11/13 16:28:42 by kacherch         ###   ########.fr       */
+/*   Updated: 2025/11/18 13:45:09 by kacherch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ int	do_operation(char c, va_list args, int *counter)
 {
 	int	state;
 
+	state = 0;
 	if (c == 'd' || c == 'i')
 		state = ft_putnbr_printf(va_arg(args, int), counter);
 	else if (c == 'u')
