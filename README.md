@@ -1,12 +1,12 @@
 # ft_printf
 
-> A lightweight, custom reimplementation of the C standard library's `printf()` function — built from scratch without relying on the standard library.
+> A lightweight, custom reimplementation of the C standard library's `printf()` function. Built without relying on the standard library.
 
 ---
 
 ## Overview
 
-`ft_printf` is a C project that replicates the core behavior of `printf()` using only low-level system calls and variadic function mechanics. No formatted output functions from the standard library are used — everything is handled manually, from integer-to-string conversion to hexadecimal formatting.
+`ft_printf` is a C project that replicates the core behavior of `printf()` using only low-level system calls and variadic function mechanics. No formatted output functions from the standard library are used, everything is handled manually, from integer-to-string conversion to hexadecimal formatting.
 
 The result is a static library (`libftprintf.a`) that can be linked into any C project as a drop-in replacement for `printf()`.
 
@@ -80,13 +80,13 @@ gcc main.c -L. -lftprintf -o my_program
 
 The core logic follows a simple two-pass approach:
 
-1. **Parsing** — The format string is scanned character by character. Regular characters are written directly via `write`. When a `%` is encountered, the next character is read to determine the conversion type.
+1. **Parsing** : The format string is scanned character by character. Regular characters are written directly via `write`. When a `%` is encountered, the next character is read to determine the conversion type.
 
-2. **Dispatching** — A handler function is called for each specifier. Each handler extracts the appropriate argument from the `va_list` and writes the formatted output.
+2. **Dispatching** : A handler function is called for each specifier. Each handler extracts the appropriate argument from the `va_list` and writes the formatted output.
 
 This design keeps the code modular and easy to extend. Each specifier is handled independently, making it straightforward to add new conversions without touching existing logic.
 
-For numeric conversions (`%d`, `%u`, `%x`, `%X`), a recursive or iterative digit-extraction approach is used — no `sprintf` or `itoa` from the standard library.
+For numeric conversions (`%d`, `%u`, `%x`, `%X`), a recursive or iterative digit-extraction approach is used, no `sprintf` or `itoa` from the standard library.
 
 For `%p`, the pointer is cast to `unsigned long` and printed with a `0x` prefix in lowercase hex.
 
